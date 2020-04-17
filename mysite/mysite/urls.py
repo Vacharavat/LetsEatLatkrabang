@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from authen import views
+from webpage import views as views2
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.mylogin, name='login'),
     path('signup/', views.signup, name='signup'),
+    path('', views2.index, name='index'),
 ]
