@@ -16,3 +16,5 @@ def index(request):
     #     'new_classes': classes
     # }
     return render(request, 'webpage/index.html')
+
+

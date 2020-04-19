@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container jumbotron">
+        <h1>เพิ่มข้อมูลร้านอาหาร</h1>
+        <br/>
+        {% if Type.id %}
+            <!-- Submit to class_update view -->
+            <form method="POST" action="{% url 'managementType' %}">
+        {% else %}
+            <!-- Submit to class_add view -->
+            <form method="POST" action="{% url 'Management' %}">
+        {% endif %}
+        {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label for="name">ชื่อร้านอาหาร:</label>
+                    <input type="text" class="form-control" name="name" id="name" value="{{restaurant.name}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label for="name">คำอธิบาย:</label>
+                    <textarea type="text" class="form-control" name="description" id="desc" value="{{restaurant.desc}}" required></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label for="name">รูปภาพ:</label>
+                    <input type="file" class="" name="picture" id="picture" value="{{restaurant.picture}}" accept="image/*" required>
+                </div>
+            </div>
+            {% comment %} <div class="form-row">
+                <div class="form-group col-3">
+                    <label for="name">ราคา:</label>
+                    <input type="number" class="form-control" name="price" id="price" value="{{product.price}}" required>
+                </div>
+            </div> {% endcomment %}
+            <button type="reset" class="btn btn-warning ml-3">Reset Form</button>
+            <button type="submit" class="btn btn-primary ml-3">Submit</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

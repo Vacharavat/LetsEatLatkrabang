@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'authen',
     'webpage',
     'mysite',
+    'management',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,6 @@ STATICFILES_DIRS = [
 TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 
 LOGIN_URL = '/login/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

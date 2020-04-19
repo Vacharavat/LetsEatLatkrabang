@@ -17,10 +17,14 @@ from django.contrib import admin
 from django.urls import path,include
 from authen import views
 from webpage import views as views2
+from management import views as views3
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.mylogin, name='login'),
     path('signup/', views.signup, name='signup'),
     path('', views2.index, name='index'),
-]
+    path('management/', views3.Management, name='Management')
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
