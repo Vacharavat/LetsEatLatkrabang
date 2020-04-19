@@ -53,6 +53,10 @@
             <div>
             <button type="submit" class="btn btn-primary ml-3" href="{% url 'login' %}">Sign Up</button>
             </div>
+            <div class="container signin">
+            <br>
+    <p>Already have an account? <a href="{% url 'login' %}">Sign in</a>.</p>
+  </div>
         </form>
         <script>function validateForm() {
                 var x = document.forms["myForm"]["first_name"].value;
