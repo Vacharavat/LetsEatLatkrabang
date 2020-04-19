@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
     <div class="container">
+    <br/><br/>
         <h1>Register</h1>
         <br/><br/>
         <form name ="myForm" method="POST" action="{% url 'signup' %}" onsubmit="return validateForm()" required>

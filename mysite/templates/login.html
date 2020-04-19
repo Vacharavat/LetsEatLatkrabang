@@ -1,8 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-    <div class="container">
-        <h1>Let's Eat Ladkrabang</h1>
+
+     <div class="container">
         <br/><br/>
+        <div align="center">
+        <a class="navbar-brand" href="{% url 'index' %}">
+					<img src="{% static 'base/images/logo3.png' %}" alt="" />
+				</a>
+        </div>
+        <br/>
         <div align="center">
         {% for message in messages %}
             <h6> {{message}} </h6>
@@ -25,8 +32,10 @@
                         x.type = "text";
                         } else { x.type = "password";}} </script>
             </div>
-            <button type="submit" class="btn btn-primary ml-3">Login</button>
+            
+            <button type="submit" class="btn btn-warning btn-lg btn-block">Login</button>
         </form>
         <br/><br/>
-    </div>
+    </div> 
+    
 {% endblock %}
