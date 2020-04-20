@@ -6,28 +6,43 @@
         <br/>
         {% if Type.id %}
             <!-- Submit to class_update view -->
-            <form method="POST" action="{% url 'managementType' %}">
+            <form method="POST" action="{% url 'managementType' %}" enctype="multipart/form-data">
         {% else %}
             <!-- Submit to class_add view -->
-            <form method="POST" action="{% url 'Management' %}">
+            <form method="POST" action="{% url 'Management' %}" enctype="multipart/form-data">
         {% endif %}
         {% csrf_token %}
             <div class="form-row">
                 <div class="form-group col-3">
                     <label for="name">ชื่อร้านอาหาร:</label>
-                    <input type="text" class="form-control" name="name" id="name" value="{{restaurant.name}}" required>
+                    <input type="text" class="form-control" name="restaurant_name" id="restaurant_name" value="{{restaurantnew.restaurant_name}}" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label for="name">เบอร์ติดต่อ:</label>
+                    <input type="text" class="form-control" name="seller_phone" id="seller_phone" value="{{restaurantnew.seller_phone}}" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-3">
                     <label for="name">คำอธิบาย:</label>
-                    <textarea type="text" class="form-control" name="description" id="desc" value="{{restaurant.desc}}" required></textarea>
+                    <textarea type="text" class="form-control" name="desc" id="desc" value="{{restaurantnew.desc}}" required></textarea>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-3">
                     <label for="name">รูปภาพ:</label>
-                    <input type="file" class="" name="picture" id="picture" value="{{restaurant.picture}}" accept="image/*" required>
+                    <input type="file" name="picture" id="picture" value="{{restaurantnew.picture}}" accept="image/*" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-3">
+                    <label for="name">สถานะร้านค้า:</label>
+                    <select name="restaurant_status" id="restaurant_status">
+                            <option value="OP">open</option>
+                            <option value="CL">close</option>
+                    </select>
                 </div>
             </div>
             {% comment %} <div class="form-row">
