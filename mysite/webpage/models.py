@@ -2,7 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+class restaurant_type(models.Model):
+    type_name = models.CharField(max_length=50)
+
 class restaurant(models.Model):
+    restaurant_type_id = models.ForeignKey(restaurant_type, on_delete=models.CASCADE, default='')
+    location_address = models.CharField(max_length=200)
     restaurant_name = models.CharField(max_length=50)
     seller_phone = models.CharField(max_length=10)
     desc = models.CharField(max_length=200)
@@ -18,15 +23,6 @@ class restaurant(models.Model):
         choices=Restaurant_TODAY,
         default=OPEN,
     )
-    
-
-class restaurant_type(models.Model):
-    type_name = models.CharField(max_length=50)
-    restaurant_id = models.ForeignKey(restaurant, on_delete=models.CASCADE)
-
-class location(models.Model):
-    location_address = models.CharField(max_length=200)
-    restaurant_id = models.ForeignKey(restaurant, on_delete=models.CASCADE)
 
 class restaurant_menu(models.Model):
     menu_name = models.CharField(max_length=50)
@@ -34,11 +30,11 @@ class restaurant_menu(models.Model):
     menu_price = models.FloatField()
     restaurant_id = models.ForeignKey(restaurant, on_delete=models.CASCADE)
 
-class order_list(models.Model):
-    desc = models.CharField(max_length=200)
-    unit = models.CharField(max_length=10)
-    unit_price = models.FloatField()
-    order_order_id = models.ForeignKey(User, on_delete=models.CASCADE)
+# class order_list(models.Model):
+#     desc = models.CharField(max_length=200)
+#     unit = models.CharField(max_length=10)
+#     unit_price = models.FloatField()
+#     order_order_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
 # class order(models.Model):
 #     pm = (

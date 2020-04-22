@@ -394,7 +394,7 @@ button:focus{
 .heading-title h2{
 	color: #010101;
 	font-size: 28px;
-	font-family: 'Rubik', sans-serif;
+	/* font-family: 'Rubik', sans-serif; */
 	font-weight: 500;
 }
 .heading-title p{
@@ -799,7 +799,7 @@ button:focus{
 .all-page-title h1{
 	font-size: 38px;
 	color: #ffffff;
-	font-family: 'Rubik', sans-serif;
+	/* font-family: 'Rubik', sans-serif; */
 	padding: 0px;
 	font-weight: 500;
 }

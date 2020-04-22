@@ -1,59 +1,52 @@
 {% extends "base.html" %}
 {% block content %}
-    <br>
-    <div class="container jumbotron">
-        <h1>เพิ่มข้อมูลร้านอาหาร</h1>
-        <br/>
-        {% if Type.id %}
-            <!-- Submit to class_update view -->
-            <form method="POST" action="{% url 'managementType' %}" enctype="multipart/form-data">
-        {% else %}
-            <!-- Submit to class_add view -->
-            <form method="POST" action="{% url 'Management' %}" enctype="multipart/form-data">
-        {% endif %}
-        {% csrf_token %}
-            <div class="form-row">
-                <div class="form-group col-3">
-                    <label for="name">ชื่อร้านอาหาร:</label>
-                    <input type="text" class="form-control" name="restaurant_name" id="restaurant_name" value="{{restaurantnew.restaurant_name}}" required>
-                </div>
+    <div class="container">        
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>ร้านอาหารแนะนำในละแวกสจล.</h2>
+						<p>นี่คือร้านอาหารทั้งหมดที่เรามีแนะนำ เลือกเลย!</p>
+                        <br>
+                        <a class="btn btn-dark text-white" href="{% url 'Add_Restaurant' %}">เพิ่มร้านอาหาร</a>
+                        <a class="btn btn-dark text-white" href="#">เพิ่มประเภท</a>
+                        <a class="btn btn-dark text-white" href="#">ประเภททั้งหมด</a>
+					</div>
+			</div>
+            <div class="jumbotron">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">ชื่อ</th>
+                            <th scope="col">คำอธิบาย</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for rt in resinfo %}
+                        <tr>
+                            <td><img src="{{ rt.picture.url }}" class="img-fluid" alt="Image"></td>
+                            <td>{{ rt.restaurant_name }}</td>
+                            <td>{{ rt.desc }}</td>
+                            <td>
+                                <a href="#">
+                                    <div class="btn btn-warning" id="">แก้ไข</div>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <div class="btn btn-danger" id="">ลบ</div>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
-            <div class="form-row">
-                <div class="form-group col-3">
-                    <label for="name">เบอร์ติดต่อ:</label>
-                    <input type="text" class="form-control" name="seller_phone" id="seller_phone" value="{{restaurantnew.seller_phone}}" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-3">
-                    <label for="name">คำอธิบาย:</label>
-                    <textarea type="text" class="form-control" name="desc" id="desc" value="{{restaurantnew.desc}}" required></textarea>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-3">
-                    <label for="name">รูปภาพ:</label>
-                    <input type="file" name="picture" id="picture" value="{{restaurantnew.picture}}" accept="image/*" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-3">
-                    <label for="name">สถานะร้านค้า:</label>
-                    <select name="restaurant_status" id="restaurant_status">
-                            <option value="OP">open</option>
-                            <option value="CL">close</option>
-                    </select>
-                </div>
-            </div>
-            {% comment %} <div class="form-row">
-                <div class="form-group col-3">
-                    <label for="name">ราคา:</label>
-                    <input type="number" class="form-control" name="price" id="price" value="{{product.price}}" required>
-                </div>
-            </div> {% endcomment %}
-            <button type="reset" class="btn btn-warning ml-3">Reset Form</button>
-            <button type="submit" class="btn btn-primary ml-3">Submit</button>
-        </form>
+        </div>
     </div>
 {% endblock %}
 
