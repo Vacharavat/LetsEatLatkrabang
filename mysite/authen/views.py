@@ -3,13 +3,13 @@ from builtins import object
 from os.path import abspath
 
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User, auth
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template.context_processors import request
-
+from pkg_resources import require
 
 
 # Create your views here.
@@ -53,4 +53,6 @@ def signup(request):
     
     return render(request, template_name='signup.html', context=context)
 
-
+def mylogout(request):
+    logout(request)
+    return redirect('login')

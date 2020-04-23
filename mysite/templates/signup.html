@@ -51,7 +51,11 @@
                 <label for="email">Email:</label>
                 <input type="text" class="form-control ml-3" id="email" 
                     name="email" value="{{email}}">
-            </div>            
+            </div>
+                {% comment %} <div>
+                <input type="checkbox"  name="check" onclick="Group1(this)"> สำหรับร้านค้า</div>
+                <input type="checkbox"  name="check" onclick="Group1(this)"> สำหรับผู้ใช้งานทั่วไป</div>
+            </div>   {% endcomment %}            
             <div>
             <button type="submit" class="btn btn-primary ml-3" href="{% url 'login' %}">Sign Up</button>
             </div>
@@ -59,7 +63,13 @@
             <br>
     <p>Already have an account? <a href="{% url 'login' %}">Sign in</a>.</p>
   </div>
-        </form>
+        </form>        
+        {% comment %} <script>function Group1(checkbox) {
+        var checkboxes = document.getElementsByName('check')
+        checkboxes.forEach((item) => {
+        if (item !== checkbox) item.checked = false
+                        })}
+        </script>  {% endcomment %}
         <script>function validateForm() {
                 var x = document.forms["myForm"]["first_name"].value;
                 if (x == "") {  
