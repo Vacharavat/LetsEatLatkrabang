@@ -128,8 +128,10 @@
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" href="{% url 'index' %}">หน้าหลัก</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="about.html">จองร้านอาหาร</a></li>
 						<li class="nav-item"><a class="nav-link" href="{% url 'Management' %}">จัดการร้านอาหาร</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">จองร้านอาหาร</a></li>
+            {% endif %}
 						{% comment %} <li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Pages</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -145,8 +147,13 @@
 								<a class="dropdown-item" href="blog-details.html">blog Single</a>
 							</div>
 						</li> {% endcomment %}
+            {% if user.is_authenticated %}
+						<li class="nav-item"><a class="nav-link" href="#">โปรไฟล์</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">ออกจากระบบ</a></li>
+            {% else %}
 						<li class="nav-item"><a class="nav-link" href="{% url 'login' %}">เข้าสู่ระบบ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">สมัครสมาชิก</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">สมัครสมาชิก</a></li>
+            {% endif %}
 					</ul>
 				</div>
 			</div>

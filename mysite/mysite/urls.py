@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from authen import views
+from django.contrib.auth import views as auth_views
 from webpage import views as views2
 from management import views as views3
 from django.conf import settings
@@ -24,8 +25,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.mylogin, name='login'),
+    path('logout/', views.my_logout, name='logout'),
     path('signup/', views.signup, name='signup'),
     path('', views2.index, name='index'),
+    path('restaurant_delete/<int:restaurant_id>', views3.restaurant_delete, name='restaurant_delete'),
     path('management/', views3.Management, name='Management'),
-    path('add_restaurant/', views3.Add_Restaurant, name='Add_Restaurant')
+    path('add_restaurant/', views3.Add_Restaurant, name='Add_Restaurant'),
+    path('restaurant_edit/<int:restaurant_id>', views3.restaurant_edit, name='Restaurant_edit'),
+    path('add_type/', views3.Type_add, name='Type_add')
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

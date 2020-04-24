@@ -10,7 +10,7 @@
 						<p>นี่คือร้านอาหารทั้งหมดที่เรามีแนะนำ เลือกเลย!</p>
                         <br>
                         <a class="btn btn-dark text-white" href="{% url 'Add_Restaurant' %}">เพิ่มร้านอาหาร</a>
-                        <a class="btn btn-dark text-white" href="#">เพิ่มประเภท</a>
+                        <a class="btn btn-dark text-white" href="{% url 'Type_add' %}">เพิ่มประเภท</a>
                         <a class="btn btn-dark text-white" href="#">ประเภททั้งหมด</a>
 					</div>
 			</div>
@@ -32,13 +32,13 @@
                             <td>{{ rt.restaurant_name }}</td>
                             <td>{{ rt.desc }}</td>
                             <td>
-                                <a href="#">
-                                    <div class="btn btn-warning" id="">แก้ไข</div>
+                                <a href="{% url 'Restaurant_edit' rt.id %}">
+                                    <div class="btn btn-warning" id="rt.id">แก้ไข</div>
                                 </a>
                             </td>
                             <td>
-                                <a href="#">
-                                    <div class="btn btn-danger" id="">ลบ</div>
+                                <a href="{% url 'restaurant_delete' rt.id %}">
+                                    <div class="btn btn-danger" id="rt.id">ลบ</div>
                                 </a>
                             </td>
                         </tr>

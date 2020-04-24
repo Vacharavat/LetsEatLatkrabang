@@ -3,7 +3,7 @@ from builtins import object
 from os.path import abspath
 
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User, auth
 from django.http import HttpResponse
@@ -54,3 +54,8 @@ def signup(request):
     return render(request, template_name='signup.html', context=context)
 
 
+
+
+def my_logout(request):
+    logout(request)
+    return redirect('login')

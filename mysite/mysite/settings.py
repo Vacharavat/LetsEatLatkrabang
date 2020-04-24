@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'webpage',
     'mysite',
     'management',
+    'myprofile',
+    'reservations',
+    'myreview',
 ]
 
 MIDDLEWARE = [
