@@ -1,4 +1,5 @@
 import json
+import select
 from builtins import object
 from os.path import abspath
 
@@ -10,7 +11,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template.context_processors import request
 from pkg_resources import require
-
+from django.contrib.auth.models import Group
 
 # Create your views here.
 def mylogin(request):
@@ -45,13 +46,36 @@ def signup(request):
             user = User.objects.create_user(username, email, password)
             user.first_name = fname
             user.last_name = lname
-            user.save
+            # if request.POST.GET('check2') != '' :
+            #     group = Group.objects.get(name='Store')
+            #     user.groups.add(group)
+            # else:
+            
+            if select == "no":
+                group = Group.objects.get(name='customer')
+                user.groups.add(group)
+            else:
+                group = Group.objects.get(name='store')
+                user.groups.add(group)
+            user.save() 
+            # print(user.id)
+            # id = user.id
+            # if select == 'yes':
+            #     store = Store.objects.create(
+            #         sto_id = request.POST.get('st_id'),
+            #         fname = request.POST.get('fname'),
+            #         lname = request.POST.get('lname'),
+            #         cus_phone = request.POST.get('cus_phone'),
+            #         user_id = request.POST.get('user_id')
+            #     )
+            #     # store.save()
             return redirect('login')
+
         else:
             context['error'] = 'Password Not Match!!!'
             return render(request, template_name='signup.html', context=context)
-    
     return render(request, template_name='signup.html', context=context)
+
 
 def mylogout(request):
     logout(request)
