@@ -4,7 +4,7 @@ from webpage.models import restaurant
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def index(request):
     """ หน้าหลักแสดงร้านอาหารที่มีทั้งหมด """
     restaurantfo = restaurant.objects.all()

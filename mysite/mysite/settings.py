@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'webpage',
     'mysite',
     'management',
-    'myprofile',
+    'myprofile.apps.MyprofileConfig',
     'reservations',
     'myreview',
 ]

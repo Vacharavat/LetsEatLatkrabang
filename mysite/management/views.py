@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from webpage.models import restaurant, restaurant_type
 from django.conf import settings
+# from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
 
@@ -32,6 +33,10 @@ def Add_Restaurant(request):
     }
     return render(request, 'management/add_restaurant.html', context=context)
 
+# def is_store(user):
+#     return user.groups.filter(name='store').exists()
+
+# @user_passes_test(is_store, redirect_field_name='index')
 def Management(request):
     """ หน้าจัดการร้านอาหาร ที่สามารถเพิ่ม ลบ แก้ ร้านอาหารหรือประเภทได้ """
     restaurantfo = restaurant.objects.all()
