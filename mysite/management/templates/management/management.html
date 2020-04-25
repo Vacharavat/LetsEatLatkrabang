@@ -30,6 +30,11 @@
                             <td>{{ rt.restaurant_name }}</td>
                             <td>{{ rt.desc }}</td>
                             <td>
+                                <a href="{% url 'Add_menu' rt.id %}">
+                                    <div class="btn btn-warning" id="rt.id">เพิ่มเมนู</div>
+                                </a>
+                            </td>
+                            <td>
                                 <a href="{% url 'Restaurant_edit' rt.id %}">
                                     <div class="btn btn-warning" id="rt.id">แก้ไข</div>
                                 </a>

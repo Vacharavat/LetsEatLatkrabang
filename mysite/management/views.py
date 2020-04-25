@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from webpage.models import restaurant, restaurant_type
+from webpage.models import restaurant, restaurant_type, restaurant_menu
 from django.conf import settings
 # from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -41,6 +41,39 @@ def Add_Restaurant(request):
 #     return user.groups.filter(name='store').exists()
 
 # @user_passes_test(is_store, redirect_field_name='index')
+
+def add_menu(request, restaurant_id):
+    """ เพิ่มเมนูอาหารให้ร้านอาหาร """
+
+    try:
+        restauranted = restaurant.objects.get(pk=restaurant_id)
+        msg = ''
+    except restaurant.DoesNotExist:
+        return redirect(to='Management')
+
+
+    # ถ้ามีการเรียกใช้ฟอรมหรือป้อนส่งข้อมูลลงไปในฟอรมนี้ เงื่อนไขนี้จะเริ่มทำงาน (Frame)
+    if request.method == 'POST':
+        restaurantmnu = restaurant_menu.objects.create(
+            menu_name=request.POST.get('menu_name'),
+            picture=request.FILES.get('picture'),
+            menu_price=request.POST.get('menu_price'),
+            restaurant_id_id=request.POST.get('restaurant_id')
+        )
+        msg = 'สร้างร้านค้าได้แล้ว: %s' % (restaurantmnu.menu_name)
+    else:
+        restaurantmnu = restaurant_menu.objects.none()
+
+    context = {
+        'restaurantmnu': restaurantmnu,
+        'restauranted': restauranted,
+        'msg': msg
+    }
+    return render(request, 'management/add_menu.html', context=context)
+
+
+
+
 def Management(request):
     """ หน้าจัดการร้านอาหาร ที่สามารถเพิ่ม ลบ แก้ ร้านอาหารหรือประเภทได้ """
     restaurantfo = restaurant.objects.all()

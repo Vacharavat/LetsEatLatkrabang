@@ -35,4 +35,5 @@ urlpatterns = [
     path('management/', views3.Management, name='Management'),
     path('add_restaurant/', views3.Add_Restaurant, name='Add_Restaurant'),
     path('restaurant_edit/<int:restaurant_id>', views3.restaurant_edit, name='Restaurant_edit'),
+    path('add_menu/<int:restaurant_id>', views3.add_menu, name='Add_menu'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
