@@ -37,13 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'crispy_forms',
     'authen',
     'webpage',
     'mysite',
     'management',
     'myprofile.apps.MyprofileConfig',
     'reservations',
-    'myreview',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +140,5 @@ LOGIN_URL = '/login/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'

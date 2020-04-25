@@ -26,21 +26,32 @@
 						<h2>ร้านอาหารแนะนำในละแวกสจล.</h2>
 						<p>นี่คือร้านอาหารทั้งหมดที่เรามีแนะนำ เลือกเลย!</p>
 					</div>
+					<form class="form-inline" method="GET">
+						<div class="blog-search-form">
+							<label for="search_restaurant">ค้นหา:</label>
+							<input type="text" class="form-control ml-3" id="search_restaurant" 
+								name="search_restaurant" placeholder="ชื่อร้าน">
+							<button type="submit" class="search-btn">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+						</div>
+                    	
+            		</form>
 				</div>
 			</div>
-
+			
 			
 			<div class="row inner-menu-box">
 				<div class="col-3">
 					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-						<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">ร้านทั้งหมด</a>
-						<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">บุฟเฟ่ต์</a>
-						<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">ตามสั่ง</a>
-						<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">ก๋วยเตี๋ยว</a>
-						<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">ยำ/ส้มตำ</a>
-						<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">อาหารเกาหลี</a>
-                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">อาหารญี่ปุ่น</a>
-                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">คาเฟ่</a>
+						<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="{% url "index" %}" role="tab" aria-controls="v-pills-home" aria-selected="true">ร้านทั้งหมด</a>
+						<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="{% url "index_type" type_id=1 %}" role="tab" aria-controls="v-pills-profile" aria-selected="false">บุฟเฟ่ต์</a>
+						<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="{% url "index_type" type_id=2 %}" role="tab" aria-controls="v-pills-messages" aria-selected="false">ตามสั่ง</a>
+						<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="{% url "index_type" type_id=3 %}" role="tab" aria-controls="v-pills-messages" aria-selected="false">ก๋วยเตี๋ยว</a>
+						<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="{% url "index_type" type_id=4 %}" role="tab" aria-controls="v-pills-messages" aria-selected="false">ยำ/ส้มตำ</a>
+						<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="{% url "index_type" type_id=5 %}" role="tab" aria-controls="v-pills-settings" aria-selected="false">อาหารเกาหลี</a>
+                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="{% url "index_type" type_id=6 %}" role="tab" aria-controls="v-pills-settings" aria-selected="false">อาหารญี่ปุ่น</a>
+                        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="{% url "index_type" type_id=7 %}" role="tab" aria-controls="v-pills-settings" aria-selected="false">คาเฟ่</a>
 					</div>
 				</div>
 				
@@ -48,9 +59,11 @@
 					<div class="tab-content" id="v-pills-tabContent">
 						<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 							<div class="row">
+							{% if resinfo.count == 0 %}
+								<p class="text-danger">ไม่เจอนะจ๊ะ</p>
+							{% else %}							
 								{% for rt in resinfo %}
-								<div class="col-lg-4 col-md-6 special-grid drinks">
-									
+								<div class="col-lg-4 col-md-6 special-grid drinks">									
 									<div class="gallery-single fix">
 										<img src="{{ rt.picture.url }}" class="img-fluid" alt="Image">
 										<div class="why-text">
@@ -61,10 +74,10 @@
                                 				</a>
 											</h5>
 										</div>
-									</div>
-									
+									</div>			
 								</div>
-								{% endfor %}	
+								{% endfor %}
+							{% endif %}	
 							</div>
 						</div>
 					</div>

@@ -8,8 +8,12 @@ from django.conf import settings
 
 def Add_Restaurant(request):
     """ หน้าเพิ่มร้านอาหารใหม่ """
+    # ตั้งค่าข้อความเป็นว่างไว้ก่อน (Frame)
     msg = ''
+    # ดึงข้อมูล models restaurant_type มาโดยเรียงตาม id
     res_type = restaurant_type.objects.all().order_by('id')
+
+    # ถ้ามีการเรียกใช้ฟอรมหรือป้อนส่งข้อมูลลงไปในฟอรมนี้ เงื่อนไขนี้จะเริ่มทำงาน (Frame)
     if request.method == 'POST':
         restaurantnew = restaurant.objects.create(
             restaurant_name=request.POST.get('restaurant_name'),
@@ -78,28 +82,6 @@ def restaurant_edit(request, restaurant_id):
 
     return render(request, 'management/edit_restaurant.html', context=context)
 
-
-
-def Type_add(request):
-    
-    """ เพิ่มประเภทใหม่เข้าไปในดาต้าเบส """
-
-    msg = ''
-
-    if request.method == 'POST':
-        Type = restaurant_type.objects.create(
-            type_name=request.POST.get('type_name'),
-        )
-        msg = 'สร้างประเภทใหม่ได้แล้ว: %s' % (Type.type_name)
-    else:
-        Type = restaurant_type.objects.none()
-
-    context = {
-        'restaurant_type': Type,
-        'msg': msg
-    }
-
-    return render(request, 'management/add_type.html', context=context)
 
 def restaurant_delete(request, restaurant_id):
 
