@@ -4,7 +4,7 @@ from .models import Profile
 from django.forms import ModelForm
 
 class UserUpdateForm(forms.ModelForm):
-    # email = forms.EmailField()
+    email = forms.EmailField()
 
     class Meta:
         model = User

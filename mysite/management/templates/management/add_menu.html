@@ -29,14 +29,14 @@
                     <input type="text" class="form-control" name="menu_price" id="menu_price" required>
                 </div>
             </div>
-            <div class="form-row">
+            {% comment %} <div class="form-row">
                     <div class="form-group col-3">
                         <label for="name">ของร้าน:</label>
                         <select id="restaurant_id" name="restaurant_id">
                                 <option value="{{ restauranted.id }}">{{ restauranted.id }}</option>
                         </select>
                     </div>
-            </div>
+            </div> {% endcomment %}
             {% csrf_token %}
             {% if msg %}<p class="text-success">{{msg}}</p>{% endif %}
             <button type="submit" class="btn btn-primary ml-3">Submit</button>

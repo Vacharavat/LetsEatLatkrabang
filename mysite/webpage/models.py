@@ -12,6 +12,7 @@ class restaurant(models.Model):
     seller_phone = models.CharField(max_length=10)
     desc = models.CharField(max_length=200)
     picture = models.ImageField(upload_to='restaurant_image', blank=True)
+    own_by = models.ForeignKey(User, on_delete=models.CASCADE, default='')
     OPEN = 'OP'
     CLOSE = 'CL'
     Restaurant_TODAY = (
@@ -23,6 +24,7 @@ class restaurant(models.Model):
         choices=Restaurant_TODAY,
         default=OPEN,
     )
+
 
 class restaurant_menu(models.Model):
     menu_name = models.CharField(max_length=50)

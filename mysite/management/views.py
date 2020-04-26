@@ -1,11 +1,14 @@
-from django.shortcuts import render, redirect
-from webpage.models import restaurant, restaurant_type, restaurant_menu
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
+from django.contrib.auth.models import User
+from webpage.models import restaurant, restaurant_menu, restaurant_type
+
 # from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
 
-
+@login_required
 def Add_Restaurant(request):
     """ หน้าเพิ่มร้านอาหารใหม่ """
     # ตั้งค่าข้อความเป็นว่างไว้ก่อน (Frame)
@@ -23,6 +26,7 @@ def Add_Restaurant(request):
             location_address=request.POST.get('location_address'),
             picture=request.FILES.get('picture'),
             restaurant_status=request.POST.get('restaurant_status'),
+            own_by_id = request.user.id
         )
         print(restaurantnew.picture)
         msg = 'สร้างร้านค้าได้แล้ว: %s' % (restaurantnew.restaurant_name)
@@ -58,7 +62,7 @@ def add_menu(request, restaurant_id):
             menu_name=request.POST.get('menu_name'),
             picture=request.FILES.get('picture'),
             menu_price=request.POST.get('menu_price'),
-            restaurant_id_id=request.POST.get('restaurant_id')
+            restaurant_id_id=restaurant_id
         )
         msg = 'สร้างร้านค้าได้แล้ว: %s' % (restaurantmnu.menu_name)
     else:
@@ -76,7 +80,8 @@ def add_menu(request, restaurant_id):
 
 def Management(request):
     """ หน้าจัดการร้านอาหาร ที่สามารถเพิ่ม ลบ แก้ ร้านอาหารหรือประเภทได้ """
-    restaurantfo = restaurant.objects.all()
+    user = User.objects.get(id=request.user.id)
+    restaurantfo = restaurant.objects.filter(own_by=user)
     context = {
         'resinfo': restaurantfo
     }

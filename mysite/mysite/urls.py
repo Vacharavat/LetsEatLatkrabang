@@ -30,6 +30,7 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('profile/', views4.profile, name='Profile'),
     path('', views2.index, name='index'),
+    path('detail/<int:restaurant_id>', views2.res_detail, name='detail'),
     path('<int:type_id>', views2.index_type, name='index_type'),
     path('restaurant_delete/<int:restaurant_id>', views3.restaurant_delete, name='restaurant_delete'),
     path('management/', views3.Management, name='Management'),

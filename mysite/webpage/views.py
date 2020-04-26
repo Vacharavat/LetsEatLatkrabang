@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from webpage.models import restaurant
+from webpage.models import restaurant, restaurant_menu
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -45,4 +45,11 @@ def index_type(request, type_id):
 
 # หน้ารายละเอียดนี่ยังไม่ได้ทำนะครับ (Frame)
 def res_detail(request, restaurant_id):
-    """ดูรายละเอียดข้องร้านอาหาร และ มีปุ่มจองร้านอาหาร """
+    """ ดูรายละเอียดข้องร้านอาหาร และ มีปุ่มจองร้านอาหาร """
+    restaurantdt = restaurant.objects.get(pk=restaurant_id)
+    menushow = restaurant_menu.objects.filter(restaurant_id_id=restaurant_id)
+    context = {
+        'restaurantdt': restaurantdt,
+        'menushow': menushow,
+    }
+    return render(request, 'webpage/detail.html', context=context)

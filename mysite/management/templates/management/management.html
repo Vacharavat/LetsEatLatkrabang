@@ -5,13 +5,23 @@
         <br>
         <div class="row">
             <div class="col-lg-12">
-					<div class="heading-title text-center">
-						<h2>ร้านอาหารแนะนำในละแวกสจล.</h2>
-						<p>นี่คือร้านอาหารทั้งหมดที่เรามีแนะนำ เลือกเลย!</p>
-                        <br>
-                        <a class="btn btn-dark text-white" href="{% url 'Add_Restaurant' %}">เพิ่มร้านอาหาร</a>
-					</div>
+                    {% if resinfo.count == 0 %}
+                        <div class="heading-title text-center">
+                            <h2>ดูเหมือนว่าคุณยังไม่มีร้านอาหารนะ</h2>
+                            <p>เพิ่มร้านอาหารสุดอร่อยของคุณเลยเซ่!</p>
+                            <br>
+                            <a class="btn btn-dark text-white" href="{% url 'Add_Restaurant' %}">เพิ่มร้านอาหาร</a>
+                        </div>
+                    {% else %}
+                        <div class="heading-title text-center">
+                            <h2>ร้านอาหารทั้งหมดที่คุณเป็นเจ้าของ</h2>
+                            <p>คุณยังสามารถเพิ่มร้านอาหารได้นะ</p>
+                            <br>
+                            <a class="btn btn-dark text-white" href="{% url 'Add_Restaurant' %}">เพิ่มร้านอาหารสุดอร่อยของคุณเลยเซ่!</a>
+                        </div>
+                    {% endif %}
 			</div>
+            {% if resinfo.count > 0 %}
             <div class="jumbotron">
                 <table class="table">
                     <thead>
@@ -49,6 +59,7 @@
                     </tbody>
                 </table>
             </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
