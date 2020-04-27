@@ -38,21 +38,6 @@ class restaurant_menu(models.Model):
 #     unit_price = models.FloatField()
 #     order_order_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
-# class order(models.Model):
-#     pm = (
-#         (1, "No"),
-#         (2, "Yes"),
-#     )
-#     os = (
-#         (1, "No"),
-#         (2, "Yes"),       
-#     )
-#     order_date = models.DateTimeField(auto_now_add=True)
-#     payment  = models.IntegerField(choices=pm)
-#     list_price = models.FloatField()
-#     order_status = models.IntegerField(choices=os)
-#     customer_user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-
 # class customer(models.Model):
 #     rs = (
 #         (1, "reserve"),

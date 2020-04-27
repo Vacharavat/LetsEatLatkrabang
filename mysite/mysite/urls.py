@@ -20,6 +20,8 @@ from django.contrib.auth import views as auth_views
 from webpage import views as views2
 from management import views as views3
 from myprofile import views as views4
+from myreview import views as views5
+from reservations import views as views6
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -31,10 +33,12 @@ urlpatterns = [
     path('profile/', views4.profile, name='Profile'),
     path('', views2.index, name='index'),
     path('detail/<int:restaurant_id>', views2.res_detail, name='detail'),
+    path('delete_comment/<int:review_id>', views5.delete_review, name='review_delete'),
     path('<int:type_id>', views2.index_type, name='index_type'),
     path('restaurant_delete/<int:restaurant_id>', views3.restaurant_delete, name='restaurant_delete'),
     path('management/', views3.Management, name='Management'),
     path('add_restaurant/', views3.Add_Restaurant, name='Add_Restaurant'),
     path('restaurant_edit/<int:restaurant_id>', views3.restaurant_edit, name='Restaurant_edit'),
     path('add_menu/<int:restaurant_id>', views3.add_menu, name='Add_menu'),
+    path('reservation/<int:restaurant_id>', views6.start_reservation, name='reservation'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from webpage.models import restaurant, restaurant_menu
 from django.contrib.auth.decorators import login_required
-
+from myreview.models import Review
 # Create your views here.
 # @login_required(login_url='login')
 def index(request):
@@ -46,10 +46,21 @@ def index_type(request, type_id):
 # หน้ารายละเอียดนี่ยังไม่ได้ทำนะครับ (Frame)
 def res_detail(request, restaurant_id):
     """ ดูรายละเอียดข้องร้านอาหาร และ มีปุ่มจองร้านอาหาร """
+    if request.method == "POST":
+        review = request.POST.get('review', '')
+        print(review)
+        if review != '':
+            reviewjing = Review.objects.create(comment=review,user=request.user,restaurant_id=restaurant_id)
+
+    
+    review_list = Review.objects.filter(restaurant__id = restaurant_id)
+    review_count = len(review_list)
     restaurantdt = restaurant.objects.get(pk=restaurant_id)
     menushow = restaurant_menu.objects.filter(restaurant_id_id=restaurant_id)
     context = {
         'restaurantdt': restaurantdt,
         'menushow': menushow,
+        'review_list': review_list,
+        'review_count': review_count,
     }
     return render(request, 'webpage/detail.html', context=context)

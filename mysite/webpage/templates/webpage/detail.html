@@ -18,7 +18,9 @@
 						<p>{{ restaurantdt.desc }}</p>
                         <h2 class="text-danger">ที่อยู่ร้าน:</h2>
 						<p>{{ restaurantdt.location_address }}</p>
-						<a class="btn btn-lg btn-circle btn-outline-new-white" href="#">จองร้านอาหาร</a>
+						<h2 class="text-danger">เบอร์ติดต่อ:</h2>
+						<p>{{ restaurantdt.seller_phone }}</p>
+						<a class="btn btn-lg btn-circle btn-outline-new-white" href="{% url 'reservation' restaurant_id=restaurantdt.id%}">จองร้านอาหาร</a>
 					</div>
 				</div>
 			</div>
@@ -54,6 +56,33 @@
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="container mt-4">
+				<div class="m-3 p-3 border">
+					<h3>Comment <small>มีคอมเม้นทั้งหมด {{ review_count }} </small></h3>
+					{% for rv in review_list %}
+					<div class="container mt-4">
+						<div class="m-3 p-3 border">
+							<h3 class="card-text">{{ rv.comment }}</h3>
+							
+							<small>By : {{ rv.user.username }} Time: {{rv.create_time|date:'d/m/Y H:i'}}</small>
+							{% if rv.user.id == request.user.id %}
+							<a href="{% url "review_delete" review_id=rv.id %}">
+                                    <div class="text-danger">ลบ</div>
+                            </a>
+							{% endif %}
+						</div>
+					</div>
+					{% endfor %}
+					<p></p>
+					<h4>Write your comment</h4>
+					<form action="{% url 'detail' restaurant_id=restaurantdt.id%}" method="POST" >
+					{% csrf_token %}
+						<textarea type="text" class="form-control" id="review" name="review" ></textarea>
+						<br>
+						<button type="submit" class="btn btn-primary">save</button>
+					</form>
 				</div>
 			</div>
 		</div>

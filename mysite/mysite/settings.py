@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'management',
     'myprofile.apps.MyprofileConfig',
     'reservations',
+    'myreview',
 ]
 
 MIDDLEWARE = [
