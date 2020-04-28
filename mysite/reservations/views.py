@@ -56,7 +56,12 @@ def res_reservation_rejected(request, reservation_id):
 
     return redirect('/show_myreser/')
 
-# def res_reservation_pending(request, reservation_id):
+def res_reservation_cancel(request, reservation_id):
+    reser_acc = reservation_accepted.objects.get(reservation_id=reservation_id)
+    reser_acc.reser_status = "Cancel"
+    reser_acc.save()
+
+    return redirect('/show_cus_reser/')
 
 def cus_reservation(request):
     myreser = myreservation.objects.filter(user=request.user).order_by('-reservation_date')

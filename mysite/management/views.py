@@ -18,7 +18,8 @@ def Add_Restaurant(request):
     res_type = restaurant_type.objects.all().order_by('id')
 
     # ถ้ามีการเรียกใช้ฟอรมหรือป้อนส่งข้อมูลลงไปในฟอรมนี้ เงื่อนไขนี้จะเริ่มทำงาน (Frame)
-    if request.method == 'POST':
+    # ถ้ามีการกระทำเป็น POST จะเริ่มรับค่าสร้างร้านอาหาร
+    if request.method == 'POST': 
         restaurantnew = restaurant.objects.create(
             restaurant_name=request.POST.get('restaurant_name'),
             seller_phone=request.POST.get('seller_phone'),

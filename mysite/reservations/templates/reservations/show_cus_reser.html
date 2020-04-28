@@ -7,6 +7,8 @@
 						<h2>การจองร้านของคุณ</h2>
 						{% if myreser.count == 0 %}
 							<p>ยังไม่มีการจอง</p>
+						{% else %}
+							<p>มีการจองทั้งหมด {{ myreser.count }}</p>
 						{% endif %}
 	</div>
     <div class="jumbotron">
@@ -34,8 +36,7 @@
 							<h2 class="text-danger">สถานะ : <span style="color:black;">รอดำเนินการ</span></h2>
 						{% endif %}
 						{% if rs.reservation_accepted.reser_status == 'Pending' %}
-							<a class="btn btn-lg btn-circle btn-outline-new-white" href="{% url "reservation_accepted" reservation_id=rs.id %}">ยอมรับการจอง</a>
-							<a class="btn btn-lg btn-circle btn-outline-new-white" href="{% url "reservation_rejected" reservation_id=rs.id %}">ปฎิเสทการจอง</a>
+							<a class="btn btn-lg btn-circle btn-outline-new-white" href="{% url "reservation_cancel" reservation_id=rs.id %}">ยกเลิกการจอง</a>
 						{% endif %}
 					</div>
 				</div>
