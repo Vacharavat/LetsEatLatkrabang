@@ -29,3 +29,4 @@ def start_reservation(request, restaurant_id):
 
 
 # def res_reservation_show(request)
+#     myreser = restaurant.objects.all()
