@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+	<style>
+		.img-fluid2{
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+		}
+	</style>
     <br>
     <div class="heading-title text-center">
 						<h2>ร้านอาหารแนะนำในละแวกสจล.</h2>
@@ -44,7 +51,7 @@
 								{% for mn in menushow %}
 								<div class="col-lg-4 col-md-6 special-grid drinks">									
 									<div class="gallery-single fix">
-										<img src="{{ mn.picture.url }}" class="img-fluid" alt="Image">
+										<img src="{{ mn.picture.url }}" class="img-fluid2" alt="Image">
 										<div class="why-text">
 											<h4>{{ mn.menu_name }}</h4>
                                             <h5>{{ mn.menu_price }} บาท</h5>

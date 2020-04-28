@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from webpage.models import restaurant
 from django.contrib.auth.models import User
-from reservations.models import myreservation
+from reservations.models import myreservation, reservation_accepted
 # Create your views here.
 
 def start_reservation(request, restaurant_id):
@@ -18,6 +18,7 @@ def start_reservation(request, restaurant_id):
             user=request.user,
             restaurant_id=restaurant_id)
         msg = 'สร้างคำจองเสร็จแล้ว'
+        reser_accepted = reservation_accepted.objects.create(reser_status="Pending",reservation=reservationcreat)
 
     context = {
         'restaurantrv': restaurantrv,
@@ -29,8 +30,31 @@ def start_reservation(request, restaurant_id):
 
 
 def res_reservation_show(request):
-    myreser = myreservation.objects.all()
+    myreser = myreservation.objects.filter(restaurant__own_by=request.user).order_by('-reservation_date')
     context = {
         'myreser': myreser,
     }
     return render(request, 'reservations/show_reser.html', context=context)
+
+def res_reservation_accepted(request, reservation_id):
+    reser_acc = reservation_accepted.objects.get(reservation_id=reservation_id)
+    reser_acc.reser_status = "Accepted"
+    reser_acc.save()
+
+    return redirect('/show_myreser/')
+
+def res_reservation_rejected(request, reservation_id):
+    reser_acc = reservation_accepted.objects.get(reservation_id=reservation_id)
+    reser_acc.reser_status = "Rejected"
+    reser_acc.save()
+
+    return redirect('/show_myreser/')
+
+# def res_reservation_pending(request, reservation_id):
+
+def cus_reservation(request):
+    myreser = myreservation.objects.filter(user=request.user).order_by('-reservation_date')
+    context = {
+        'myreser': myreser,
+    }
+    return render(request, 'reservations/show_cus_reser.html', context=context)

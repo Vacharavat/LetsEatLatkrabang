@@ -42,4 +42,7 @@ urlpatterns = [
     path('add_menu/<int:restaurant_id>', views3.add_menu, name='Add_menu'),
     path('reservation/<int:restaurant_id>', views6.start_reservation, name='reservation'),
     path('show_myreser/', views6.res_reservation_show, name='show_reservation'),
+    path('show_cus_reser/', views6.cus_reservation, name='show_cus_reservation'),
+    path('reser_accepted/<int:reservation_id>', views6.res_reservation_accepted, name='reservation_accepted'),
+    path('reser_rejected/<int:reservation_id>', views6.res_reservation_rejected, name='reservation_rejected'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

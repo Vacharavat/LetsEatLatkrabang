@@ -133,7 +133,7 @@
 						    <li class="nav-item"><a class="nav-link" href="{% url 'Management' %}">จัดการร้านอาหาร</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'show_reservation' %}">คำจองทั้งหมด</a></li>
               {% else %}
-                <li class="nav-item"><a class="nav-link" href="about.html">จองร้านอาหาร</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'show_cus_reservation' %}">คำจองของคุณ</a></li>
               {% endif %}
             {% endif %}
 						{% comment %} <li class="nav-item dropdown">
