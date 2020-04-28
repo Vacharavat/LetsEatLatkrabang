@@ -28,5 +28,9 @@ def start_reservation(request, restaurant_id):
     return render(request, 'reservations/reservation.html', context=context)
 
 
-# def res_reservation_show(request)
-#     myreser = restaurant.objects.all()
+def res_reservation_show(request):
+    myreser = myreservation.objects.all()
+    context = {
+        'myreser': myreser,
+    }
+    return render(request, 'reservations/show_reser.html', context=context)

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <br>
+    <div class="heading-title text-center">
+						<h2>ยอดการจองของร้านคุณ</h2>
+	</div>
+    <div class="jumbotron">
+		<div class="container">
+            {% for rs in myreser %}
+			<div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                        <img src="{{ rs.user.profile.image.url }}" class="img-fluid" alt="">
+                </div>
+				<div class="col-lg-6 col-md-6 col-sm-12 text-center">
+					<div class="inner-column">
+						<h1>คำจองของคุณ : {{ rs.reser_as }}</h1>
+						<h2 class="text-danger">มาทั้งหมด :</h2>
+						<p>{{ rs.person }} ท่าน</p>
+						<h2 class="text-danger">เบอร์ติดต่อ :</h2>
+						<p>{{ rs.contact }}</p>
+                        <h2 class="text-danger">จองร้านวันที่ :</h2>
+						<p>{{ rs.reser_day }}</p>
+                        <h2 class="text-danger">เวลา :</h2>
+						<p>{{ rs.reser_time }}</p>
+                        <h2 class="text-danger">ร้าน :</h2>
+						<p>{{ rs.restaurant.restaurant_name }}</p>
+						<a class="btn btn-lg btn-circle btn-outline-new-white" href="#">ยอมรับการจอง</a>
+					</div>
+				</div>
+			</div>
+            {% endfor %}
+		</div>
+    </div>
+{% endblock %}

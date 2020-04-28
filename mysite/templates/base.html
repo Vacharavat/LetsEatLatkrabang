@@ -131,7 +131,7 @@
             {% if user.is_authenticated %}
               {% if request.user.groups.all.0.name == "store" %}
 						    <li class="nav-item"><a class="nav-link" href="{% url 'Management' %}">จัดการร้านอาหาร</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'Management' %}">คำจองทั้งหมด</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'show_reservation' %}">คำจองทั้งหมด</a></li>
               {% else %}
                 <li class="nav-item"><a class="nav-link" href="about.html">จองร้านอาหาร</a></li>
               {% endif %}
