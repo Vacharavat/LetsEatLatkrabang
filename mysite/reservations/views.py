@@ -1,9 +1,15 @@
-from django.shortcuts import render, redirect
-from webpage.models import restaurant
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
+from django.shortcuts import redirect, render
+
 from reservations.models import myreservation, reservation_accepted
+from webpage.models import restaurant
+
 # Create your views here.
 
+
+
+@permission_required('reservations.add_myreservation')
 def start_reservation(request, restaurant_id):
     """ จองร้านอาหาร """
     restaurantrv = restaurant.objects.get(pk=restaurant_id)

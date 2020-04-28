@@ -88,7 +88,11 @@
 					{% csrf_token %}
 						<textarea type="text" class="form-control" id="review" name="review" ></textarea>
 						<br>
-						<button type="submit" class="btn btn-primary">save</button>
+						{% if user.is_authenticated %}
+							<button type="submit" class="btn btn-primary">save</button>
+						{% else %}
+							<p>กรุณาเข้าสู่ระบบเพื่อรีวิวร้านอาหาร</p>
+						{% endif %}
 					</form>
 				</div>
 			</div>

@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from webpage.models import restaurant, restaurant_menu, restaurant_type
@@ -9,6 +9,7 @@ from webpage.models import restaurant, restaurant_menu, restaurant_type
 # Create your views here.
 
 @login_required
+@permission_required('webpage.add_restaurant') 
 def Add_Restaurant(request):
     """ หน้าเพิ่มร้านอาหารใหม่ """
     # ตั้งค่าข้อความเป็นว่างไว้ก่อน (Frame)
@@ -45,7 +46,8 @@ def Add_Restaurant(request):
 #     return user.groups.filter(name='store').exists()
 
 # @user_passes_test(is_store, redirect_field_name='index')
-
+@login_required
+@permission_required('webpage.add_restaurant') 
 def add_menu(request, restaurant_id):
     """ เพิ่มเมนูอาหารให้ร้านอาหาร """
 
@@ -76,8 +78,8 @@ def add_menu(request, restaurant_id):
     return render(request, 'management/add_menu.html', context=context)
 
 
-
-
+@login_required
+@permission_required('webpage.add_restaurant') 
 def Management(request):
     """ หน้าจัดการร้านอาหาร ที่สามารถเพิ่ม ลบ แก้ ร้านอาหารหรือประเภทได้ """
     user = User.objects.get(id=request.user.id)
@@ -88,7 +90,8 @@ def Management(request):
 
     return render(request, 'management/management.html', context=context)
 
-
+@login_required
+@permission_required('webpage.add_restaurant') 
 def restaurant_edit(request, restaurant_id):
     
     """ แก้ไขร้านอาหาร"""
@@ -120,7 +123,8 @@ def restaurant_edit(request, restaurant_id):
 
     return render(request, 'management/edit_restaurant.html', context=context)
 
-
+@login_required
+@permission_required('webpage.add_restaurant') 
 def restaurant_delete(request, restaurant_id):
 
     """ ลบร้านอาหาร """
